@@ -161,6 +161,14 @@
         backdrop-filter: blur(2px);
       }
 
+      .hero-mobile-visual {
+        display: none;
+      }
+
+      .hero-text-stack {
+        display: block;
+      }
+
       .hero-split {
         margin-top: 24px;
         display: grid;
@@ -1053,11 +1061,18 @@
         }
 
         .topbar .cta {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 132px;
+          min-height: 44px;
           padding: 9px 16px;
           font-size: 0.9rem;
+          font-weight: 800;
           white-space: nowrap;
           flex-shrink: 0;
-          line-height: 1.1;
+          line-height: 1;
+          box-shadow: 0 4px 10px rgba(245, 196, 0, 0.2);
         }
 
         .hero-cta-row {
@@ -1120,9 +1135,10 @@
         }
 
         .topbar .cta {
+          min-width: 126px;
+          min-height: 42px;
           padding: 8px 14px;
-          font-size: 0.86rem;
-          min-height: 44px;
+          font-size: 0.85rem;
         }
 
         .hero {
@@ -1134,9 +1150,9 @@
           background:
             linear-gradient(
               180deg,
-              rgba(0, 0, 0, 0.38) 0%,
-              rgba(0, 0, 0, 0.6) 36%,
-              rgba(0, 0, 0, 0.84) 100%
+              rgba(0, 0, 0, 0.2) 0%,
+              rgba(0, 0, 0, 0.35) 36%,
+              rgba(0, 0, 0, 0.75) 100%
             ),
             url("Banner_academia_mobile.jpg") 50% 18% / cover no-repeat;
         }
@@ -1144,12 +1160,41 @@
         .hero-content {
           margin-left: 0;
           width: 100%;
-          padding: 20px;
+          padding: 0;
+          border: 0;
+          background: transparent;
+          backdrop-filter: none;
+        }
+
+        .hero-text-stack {
+          padding: 18px 16px 16px;
+          border-radius: var(--radius-lg);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           background: linear-gradient(
-            145deg,
-            rgba(8, 8, 8, 0.72) 0%,
-            rgba(8, 8, 8, 0.58) 100%
+            160deg,
+            rgba(8, 8, 8, 0.76) 0%,
+            rgba(8, 8, 8, 0.66) 100%
           );
+          backdrop-filter: blur(2px);
+        }
+
+        .hero-text-stack h1 {
+          margin-bottom: 10px;
+          text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+        }
+
+        .hero-text-stack .lead {
+          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.42);
+        }
+
+        .hero-mobile-visual {
+          display: block;
+          height: min(44svh, 360px);
+          border-radius: var(--radius-lg);
+          border: 1px solid #353535;
+          margin-bottom: 16px;
+          background: url("Banner_academia_mobile.jpg") center 18% / cover no-repeat;
+          box-shadow: var(--shadow-card);
         }
 
         h1 {
@@ -1193,8 +1238,10 @@
         }
 
         .topbar .cta {
+          min-width: 118px;
+          min-height: 40px;
           padding: 7px 12px;
-          font-size: 0.82rem;
+          font-size: 0.8rem;
         }
 
         .hero-content {
@@ -1266,28 +1313,31 @@
       <section class="hero hero-full">
         <div class="hero-overlay wrap">
           <div class="hero-content fade">
-            <h1>Convierte la IA en una herramienta real para tu negocio</h1>
-            <p class="lead">
-              Aprende a usar IA de forma práctica, clara y sin volverte técnico.
-              Clases paso a paso para emprendedores, no para ingenieros.
-            </p>
-            <div class="hero-split">
-              <aside class="card offer-card">
-                <span class="offer-tag">Acceso inmediato</span>
-                <p class="offer-title">Inversión hoy</p>
-                <h3 class="offer-price">$13 USD</h3>
-                <p class="offer-sub">Pago único · Sin mensualidades</p>
-                <ul class="offer-list">
-                  <li class="offer-item"><span class="offer-check">✓</span><span class="offer-text">Pago único. Sin suscripciones ni cobros ocultos.</span></li>
-                  <li class="offer-item"><span class="offer-check">✓</span><span class="offer-text">Nuevas clases y recursos prácticos cada semana.</span></li>
-                  <li class="offer-item"><span class="offer-check">✓</span><span class="offer-text">Comunidad privada para avanzar sin quedarte bloqueado.</span></li>
-                </ul>
-              </aside>
+            <div class="hero-mobile-visual" aria-hidden="true"></div>
+            <div class="hero-text-stack">
+              <h1>Convierte la IA en una herramienta real para tu negocio</h1>
+              <p class="lead">
+                Aprende a usar IA de forma práctica, clara y sin volverte técnico.
+                Clases paso a paso para emprendedores, no para ingenieros.
+              </p>
+              <div class="hero-split">
+                <aside class="card offer-card">
+                  <span class="offer-tag">Acceso inmediato</span>
+                  <p class="offer-title">Inversión hoy</p>
+                  <h3 class="offer-price">$13 USD</h3>
+                  <p class="offer-sub">Pago único · Sin mensualidades</p>
+                  <ul class="offer-list">
+                    <li class="offer-item"><span class="offer-check">✓</span><span class="offer-text">Pago único. Sin suscripciones ni cobros ocultos.</span></li>
+                    <li class="offer-item"><span class="offer-check">✓</span><span class="offer-text">Nuevas clases y recursos prácticos cada semana.</span></li>
+                    <li class="offer-item"><span class="offer-check">✓</span><span class="offer-text">Comunidad privada para avanzar sin quedarte bloqueado.</span></li>
+                  </ul>
+                </aside>
+              </div>
+              <p class="hero-cta-row">
+                <a class="cta" href="https://venadigital.com.co/academia-ia-para-emprendedores/">Acceder ahora por $13</a>
+                <a class="cta-outline" href="#aprendizaje">Ver todo lo que incluye</a>
+              </p>
             </div>
-            <p class="hero-cta-row">
-              <a class="cta" href="https://venadigital.com.co/academia-ia-para-emprendedores/">Acceder ahora por $13</a>
-              <a class="cta-outline" href="#aprendizaje">Ver todo lo que incluye</a>
-            </p>
           </div>
         </div>
       </section>
