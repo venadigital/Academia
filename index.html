@@ -1,0 +1,1818 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Academia IA para Emprendedores</title>
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --paper: #121212;
+        --ink: #ffffff;
+        --muted: #d2d2d2;
+        --brand: #f5c400;
+        --brand-2: #ffd733;
+        --ok: #f5c400;
+        --danger: #8f8f8f;
+        --line: #2a2a2a;
+        --radius-lg: 18px;
+        --radius-md: 14px;
+        --radius-sm: 12px;
+        --radius-pill: 999px;
+        --radius-round: 50%;
+        --shadow-card: 0 14px 34px rgba(0, 0, 0, 0.38);
+        --shadow-lift: 0 14px 28px rgba(0, 0, 0, 0.34);
+        --shadow-glow: 0 8px 20px rgba(245, 196, 0, 0.28);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: radial-gradient(circle at 12% 0%, rgba(245, 196, 0, 0.15) 0%, transparent 30%),
+          radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.04) 0%, transparent 28%),
+          var(--bg);
+        color: var(--ink);
+        font-family: "Avenir Next", "Montserrat", "Segoe UI", sans-serif;
+        line-height: 1.45;
+      }
+
+      .wrap {
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(10px);
+        background: rgba(8, 8, 8, 0.92);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .topbar-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+      }
+
+      .brand {
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-short {
+        display: none;
+      }
+
+      .cta,
+      .cta-outline {
+        display: inline-block;
+        padding: 12px 18px;
+        border-radius: var(--radius-pill);
+        text-decoration: none;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .cta {
+        color: #000;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        box-shadow: 0 5px 14px rgba(245, 196, 0, 0.22);
+        border: 1px solid #ffea8a;
+      }
+
+      .cta-outline {
+        color: #ececec;
+        border: 1px solid #575757;
+        background: rgba(255, 255, 255, 0.03);
+        font-weight: 650;
+      }
+
+      .cta:hover,
+      .cta-outline:hover {
+        transform: translateY(-2px);
+      }
+
+      .cta:hover {
+        box-shadow: 0 7px 18px rgba(245, 196, 0, 0.28);
+      }
+
+      .cta:active,
+      .cta-outline:active {
+        transform: translateY(0);
+      }
+
+      .cta:focus-visible,
+      .cta-outline:focus-visible,
+      .social-btn:focus-visible,
+      .faq summary:focus-visible {
+        outline: 2px solid #f5c400;
+        outline-offset: 2px;
+      }
+
+      .cta-outline:hover {
+        border-color: #8d8d8d;
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      .hero {
+        padding: 68px 0 44px;
+      }
+
+      .hero-full {
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        background:
+          linear-gradient(
+            95deg,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.52) 44%,
+            rgba(0, 0, 0, 0.82) 100%
+          ),
+          url("Banner_academia_desktop.jpg") 34% 50% / cover no-repeat;
+      }
+
+      .hero-overlay {
+        width: 100%;
+      }
+
+      .hero-content {
+        margin-left: auto;
+        width: min(760px, 100%);
+        padding: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: var(--radius-lg);
+        background: linear-gradient(
+          140deg,
+          rgba(8, 8, 8, 0.86) 0%,
+          rgba(8, 8, 8, 0.78) 100%
+        );
+        backdrop-filter: blur(2px);
+      }
+
+      .hero-split {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 560px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 5.2vw, 4rem);
+        line-height: 1.03;
+        margin: 0 0 14px;
+        letter-spacing: -0.02em;
+        max-width: 16ch;
+      }
+
+      .lead {
+        color: var(--muted);
+        font-size: clamp(1rem, 2.3vw, 1.2rem);
+        max-width: 58ch;
+        margin: 0;
+        line-height: 1.42;
+      }
+
+      .card {
+        background: var(--paper);
+        border: 1px solid #3a3a3a;
+        border-radius: var(--radius-lg);
+        padding: 22px;
+        box-shadow: var(--shadow-card);
+      }
+
+      .price {
+        font-size: 2rem;
+        font-weight: 900;
+      }
+
+      .hero ul {
+        margin: 14px 0 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      .hero-cta-row {
+        margin: 28px 0 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .offer-card {
+        background: linear-gradient(145deg, #101010, #0a0a0a);
+      }
+
+      .offer-tag {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: var(--radius-pill);
+        border: 1px solid rgba(255, 221, 102, 0.6);
+        background: rgba(255, 221, 102, 0.12);
+        color: #ffe794;
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .offer-title {
+        margin: 10px 0 2px;
+        color: #cfcfcf;
+      }
+
+      .offer-price {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 2.7rem);
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+
+      .offer-sub {
+        margin: 6px 0 14px;
+        color: #ffeeb8;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .offer-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+      }
+
+      .offer-item {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .offer-check {
+        width: 22px;
+        height: 22px;
+        border-radius: var(--radius-round);
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #ffe066, #f5c400);
+        color: #000;
+        font-size: 0.75rem;
+        font-weight: 900;
+        flex: 0 0 auto;
+        margin-top: 1px;
+      }
+
+      .offer-text {
+        color: #e4e4e4;
+        line-height: 1.38;
+      }
+
+      .video-card {
+        padding: 12px;
+      }
+
+      .video-section {
+        padding-top: 22px;
+      }
+
+      .video-section .video-card {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      .video-wrap {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        border: 1px solid #3a3a3a;
+        background: #0a0a0a;
+      }
+
+      .video-wrap iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+
+      section {
+        padding: clamp(28px, 4vw, 40px) 0;
+      }
+
+      #aprendizaje {
+        scroll-margin-top: 92px;
+      }
+
+      h2 {
+        margin: 0 0 16px;
+        font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+        letter-spacing: -0.01em;
+        line-height: 1.1;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .section-kicker {
+        display: inline-block;
+        margin: 0 0 12px;
+        padding: 5px 10px;
+        border-radius: var(--radius-pill);
+        border: 1px solid rgba(255, 221, 102, 0.58);
+        background: rgba(255, 221, 102, 0.12);
+        color: #ffe794;
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .feature-card {
+        min-height: 190px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(255, 221, 102, 0.65);
+        box-shadow: var(--shadow-lift);
+      }
+
+      .learning-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: var(--radius-md);
+        display: grid;
+        place-items: center;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, #ffe88f, #f5c400 72%);
+        color: #000;
+        box-shadow: var(--shadow-glow);
+      }
+
+      .icon-svg {
+        width: 24px;
+        height: 24px;
+        display: block;
+        stroke-width: 2.1;
+      }
+
+      .learning-title {
+        margin: 0;
+        font-size: 1.18rem;
+        line-height: 1.2;
+      }
+
+      .learning-copy {
+        margin: 0;
+        color: #dadada;
+        line-height: 1.38;
+      }
+
+      .include-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .include-card {
+        padding: 20px;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      .include-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: var(--radius-sm);
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #ffe88f, #f5c400 72%);
+        color: #000;
+        font-size: 1.2rem;
+        box-shadow: var(--shadow-glow);
+        flex: 0 0 auto;
+      }
+
+      .include-title {
+        margin: 0 0 4px;
+        font-size: 1.06rem;
+        line-height: 1.2;
+      }
+
+      .include-copy {
+        margin: 0;
+        color: #dadada;
+        line-height: 1.38;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .feature-image {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        object-position: center center;
+        border-radius: var(--radius-md);
+        border: 1px solid #3a3a3a;
+      }
+
+      .feature-picture {
+        display: block;
+      }
+
+      .about-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .about-copy {
+        padding-right: 8px;
+      }
+
+      .about-me-split {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .about-me-image {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        object-position: center top;
+        border-radius: var(--radius-md);
+        border: 1px solid #3a3a3a;
+      }
+
+      .about-me-copy {
+        margin: 0;
+        line-height: 1.45;
+      }
+
+      .about-me-split picture {
+        display: block;
+      }
+
+      .pain-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .pain-card {
+        position: relative;
+        overflow: hidden;
+        padding: 24px 20px;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .pain-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(255, 221, 102, 0.65);
+        box-shadow: var(--shadow-lift);
+      }
+
+      .pain-head {
+        margin-bottom: 10px;
+      }
+
+      .pain-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: var(--radius-md);
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #ffe88f, #f5c400 70%);
+        color: #000;
+        font-size: 1.75rem;
+        box-shadow: var(--shadow-glow);
+        margin-bottom: 14px;
+      }
+
+      .pain-title {
+        font-weight: 800;
+        font-size: 1.38rem;
+        line-height: 1.12;
+        letter-spacing: -0.01em;
+        margin: 0;
+      }
+
+      .pain-copy {
+        margin: 8px 0 0;
+        font-size: 1.02rem;
+        color: #dadada;
+        line-height: 1.38;
+      }
+
+      .pain-footer {
+        margin-top: 16px;
+        padding: 16px 18px;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(255, 221, 102, 0.45);
+        background: linear-gradient(120deg, rgba(255, 221, 102, 0.12), rgba(255, 221, 102, 0.04));
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .pain-footer p {
+        margin: 0;
+        color: #ffeeb8;
+        font-weight: 600;
+      }
+
+      .pill {
+        display: inline-block;
+        margin-bottom: 10px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(245, 196, 0, 0.22);
+        border: 1px solid rgba(255, 221, 102, 0.75);
+        color: #fff1b8;
+        font-size: 0.86rem;
+        font-weight: 700;
+      }
+
+      h1 {
+        text-shadow: 0 0 20px rgba(245, 196, 0, 0.12);
+      }
+
+      .ok {
+        border-left: 5px solid var(--ok);
+        background: linear-gradient(110deg, rgba(245, 196, 0, 0.12), rgba(18, 18, 18, 1) 35%);
+      }
+
+      .no {
+        border-left: 5px solid var(--danger);
+        background: linear-gradient(110deg, rgba(255, 255, 255, 0.04), rgba(18, 18, 18, 1) 35%);
+      }
+
+      .decision-title {
+        margin: 0 0 12px;
+        font-size: 1.14rem;
+      }
+
+      .decision-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+      }
+
+      .decision-item {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .decision-mark {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        font-size: 0.75rem;
+        font-weight: 900;
+        margin-top: 1px;
+      }
+
+      .decision-mark.ok-mark {
+        background: linear-gradient(135deg, #ffe066, #f5c400);
+        color: #000;
+      }
+
+      .decision-mark.no-mark {
+        background: #2f2f2f;
+        color: #d8d8d8;
+      }
+
+      .social-kpis {
+        margin: 0 0 16px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .kpi-card {
+        padding: 16px;
+        text-align: center;
+      }
+
+      .kpi-value {
+        display: block;
+        font-size: clamp(1.05rem, 2.1vw, 1.5rem);
+        font-weight: 800;
+        color: #ffe794;
+        line-height: 1.05;
+        white-space: nowrap;
+      }
+
+      .kpi-label {
+        display: block;
+        margin-top: 6px;
+        color: #dddddd;
+        font-size: 0.9rem;
+        line-height: 1.32;
+      }
+
+      .social-carousel {
+        position: relative;
+      }
+
+      .social-viewport {
+        overflow: hidden;
+        border-radius: var(--radius-lg);
+      }
+
+      .social-track {
+        display: flex;
+        transition: transform 0.35s ease;
+        will-change: transform;
+      }
+
+      .social-slide {
+        min-width: 100%;
+      }
+
+      .social-card {
+        min-height: 190px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .social-controls {
+        margin-top: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .social-progress {
+        margin: 12px auto 0;
+        height: 4px;
+        width: min(240px, 65%);
+        border-radius: var(--radius-pill);
+        background: #2d2d2d;
+        overflow: hidden;
+      }
+
+      .social-progress-bar {
+        height: 100%;
+        width: 33.33%;
+        background: linear-gradient(90deg, #ffd733, #f5c400);
+        transition: width 0.35s ease;
+      }
+
+      .social-nav {
+        display: flex;
+        gap: 10px;
+        padding: 8px 10px;
+        border: 1px solid #3f3f3f;
+        border-radius: var(--radius-pill);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .social-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: var(--radius-round);
+        border: 1px solid #6a6a6a;
+        background: #1b1b1b;
+        color: #f0f0f0;
+        font-size: 1.15rem;
+        cursor: pointer;
+        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .social-btn:hover {
+        transform: translateY(-1px);
+        border-color: #f5c400;
+        background: #262626;
+      }
+
+      .quote {
+        margin: 0 0 12px;
+        color: #ebebeb;
+        line-height: 1.4;
+      }
+
+      .social-card.with-photo {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 18px;
+        align-items: center;
+        min-height: 250px;
+      }
+
+      .quote-header {
+        margin: 0;
+      }
+
+      .quote-avatar {
+        width: 180px;
+        height: 180px;
+        border-radius: var(--radius-md);
+        object-fit: cover;
+        object-position: center top;
+        border: 1px solid rgba(255, 221, 102, 0.6);
+        box-shadow: var(--shadow-glow);
+      }
+
+      .quote-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .quote-author {
+        margin: 0;
+        color: #ffeeb8;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .steps {
+        counter-reset: step;
+        display: grid;
+        gap: 16px;
+      }
+
+      .step {
+        position: relative;
+        padding-left: 60px;
+        min-height: 40px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .step::before {
+        counter-increment: step;
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        background: linear-gradient(135deg, #ffe066, var(--brand));
+        color: #000;
+        box-shadow: 0 6px 18px rgba(245, 196, 0, 0.4);
+      }
+
+      .faq .card {
+        padding: 10px 20px;
+      }
+
+      .faq details {
+        border-top: 1px solid var(--line);
+        padding: 6px 0;
+      }
+
+      .faq details[open] {
+        background: rgba(255, 221, 102, 0.06);
+        border-radius: var(--radius-sm);
+        border-top-color: rgba(255, 221, 102, 0.25);
+      }
+
+      .faq summary {
+        cursor: pointer;
+        font-weight: 700;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 2px;
+        transition: color 0.2s ease;
+      }
+
+      .faq summary:hover {
+        color: #ffeeb8;
+      }
+
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-q {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .faq-icon {
+        width: 24px;
+        height: 24px;
+        border-radius: var(--radius-round);
+        display: grid;
+        place-items: center;
+        background: rgba(255, 221, 102, 0.16);
+        border: 1px solid rgba(255, 221, 102, 0.45);
+        color: #ffe794;
+        font-size: 0.78rem;
+      }
+
+      .faq-arrow {
+        color: #cfcfcf;
+        transition: transform 0.2s ease;
+      }
+
+      .faq details[open] .faq-arrow {
+        transform: rotate(180deg);
+      }
+
+      .faq details p {
+        margin: 0 0 14px 34px;
+        color: #dddddd;
+        line-height: 1.4;
+      }
+
+      .final {
+        padding: 34px;
+        text-align: center;
+        background: linear-gradient(135deg, #0b0b0b, #1e1e1e);
+        color: #fff;
+        border-radius: calc(var(--radius-lg) + 6px);
+        border: 1px solid #4d4319;
+        box-shadow: 0 0 0 1px rgba(245, 196, 0, 0.2), 0 22px 44px rgba(0, 0, 0, 0.5);
+      }
+
+      .final-points {
+        list-style: none;
+        margin: 14px auto 6px;
+        padding: 0;
+        max-width: 620px;
+        display: grid;
+        gap: 8px;
+        text-align: left;
+      }
+
+      .final-points li {
+        display: flex;
+        gap: 9px;
+        align-items: flex-start;
+      }
+
+      .final-points li::before {
+        content: "✓";
+        width: 19px;
+        height: 19px;
+        border-radius: var(--radius-round);
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #ffe066, #f5c400);
+        color: #000;
+        font-size: 0.72rem;
+        font-weight: 900;
+        flex: 0 0 auto;
+        margin-top: 1px;
+      }
+
+      .final-note {
+        margin-top: 10px;
+        color: #ffeeb8;
+        font-weight: 700;
+      }
+
+      .guarantee-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .guarantee-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: var(--radius-sm);
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #ffe88f, #f5c400 72%);
+        color: #000;
+        box-shadow: var(--shadow-glow);
+        flex: 0 0 auto;
+      }
+
+      .final .cta {
+        margin-top: 10px;
+      }
+
+      .fade {
+        opacity: 1;
+        transform: none;
+      }
+
+      body.reveal-ready .fade {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity var(--reveal-duration, 0.65s) ease,
+          transform var(--reveal-duration, 0.65s) cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--reveal-delay, 0ms);
+      }
+
+      body.reveal-ready .fade.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        body.reveal-ready .fade,
+        body.reveal-ready .fade.is-visible {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+
+        .social-track,
+        .social-progress-bar {
+          transition: none;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero-split,
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+
+        .about-split {
+          grid-template-columns: 1fr;
+        }
+
+        .about-me-split {
+          grid-template-columns: 1fr;
+        }
+
+        .about-me-image {
+          height: 260px;
+          max-width: 340px;
+        }
+
+        .about-me-split picture {
+          display: flex;
+          justify-content: center;
+        }
+
+        .feature-image {
+          height: 260px;
+        }
+
+        .pain-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .include-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .social-kpis {
+          grid-template-columns: 1fr;
+        }
+
+        .kpi-value {
+          white-space: normal;
+        }
+
+        .social-card.with-photo {
+          grid-template-columns: 1fr;
+          min-height: auto;
+          gap: 10px;
+        }
+
+        .quote-header {
+          display: flex;
+          justify-content: center;
+        }
+
+        .quote-avatar {
+          width: 100%;
+          max-width: 260px;
+          height: 180px;
+          border-radius: var(--radius-md);
+        }
+
+        .quote-body {
+          text-align: left;
+        }
+
+        .quote {
+          font-size: 1rem;
+          line-height: 1.35;
+          margin-bottom: 10px;
+        }
+
+        .quote-author {
+          font-size: 0.95rem;
+        }
+
+        .pain-footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .topbar .cta {
+          padding: 9px 16px;
+          font-size: 0.9rem;
+          white-space: nowrap;
+          flex-shrink: 0;
+          line-height: 1.1;
+        }
+
+        .hero-cta-row {
+          margin-top: 20px;
+          justify-content: center;
+        }
+
+        .hero-cta-row .cta,
+        .hero-cta-row .cta-outline {
+          width: 100%;
+          text-align: center;
+          padding: 14px 18px;
+          min-height: 52px;
+          font-size: 1rem;
+        }
+
+        .learning-title {
+          font-size: 1.08rem;
+        }
+
+        .pain-title {
+          font-size: 1.22rem;
+        }
+
+        .include-title,
+        .decision-title {
+          font-size: 1rem;
+        }
+
+        .social-controls {
+          justify-content: center;
+          gap: 10px;
+        }
+      }
+
+      @media (max-width: 430px) {
+        .wrap {
+          width: min(1120px, 94vw);
+        }
+
+        section {
+          padding: 24px 0;
+        }
+
+        .topbar-inner {
+          padding: 10px 0;
+        }
+
+        .brand {
+          font-size: 1.1rem;
+          line-height: 1.1;
+        }
+
+        .brand-long {
+          display: none;
+        }
+
+        .brand-short {
+          display: inline;
+        }
+
+        .topbar .cta {
+          padding: 8px 14px;
+          font-size: 0.86rem;
+          min-height: 44px;
+        }
+
+        .hero {
+          padding: 54px 0 32px;
+        }
+
+        .hero-full {
+          min-height: 90svh;
+          background:
+            linear-gradient(
+              180deg,
+              rgba(0, 0, 0, 0.38) 0%,
+              rgba(0, 0, 0, 0.6) 36%,
+              rgba(0, 0, 0, 0.84) 100%
+            ),
+            url("Banner_academia_mobile.jpg") 50% 18% / cover no-repeat;
+        }
+
+        .hero-content {
+          margin-left: 0;
+          width: 100%;
+          padding: 20px;
+          background: linear-gradient(
+            145deg,
+            rgba(8, 8, 8, 0.72) 0%,
+            rgba(8, 8, 8, 0.58) 100%
+          );
+        }
+
+        h1 {
+          font-size: clamp(1.75rem, 9vw, 2.4rem);
+        }
+
+        .lead {
+          font-size: 1rem;
+        }
+
+        .card {
+          padding: 18px;
+        }
+
+        .kpi-card {
+          padding: 14px;
+        }
+
+        .social-controls {
+          justify-content: center;
+          gap: 12px;
+        }
+
+        .social-progress {
+          width: min(260px, 82%);
+        }
+
+        .quote-avatar {
+          max-width: 240px;
+          height: 168px;
+        }
+
+        .faq .card {
+          padding: 8px 14px;
+        }
+      }
+
+      @media (max-width: 390px) {
+        .brand {
+          font-size: 1.02rem;
+        }
+
+        .topbar .cta {
+          padding: 7px 12px;
+          font-size: 0.82rem;
+        }
+
+        .hero-content {
+          padding: 16px;
+        }
+
+        .hero-cta-row .cta,
+        .hero-cta-row .cta-outline {
+          min-height: 50px;
+          padding: 12px 16px;
+        }
+
+        .step {
+          padding-left: 52px;
+          min-height: 36px;
+        }
+
+        .step::before {
+          width: 34px;
+          height: 34px;
+        }
+
+        .quote {
+          font-size: 0.96rem;
+        }
+
+        .quote-author {
+          font-size: 0.9rem;
+        }
+
+        .lead {
+          font-size: 0.95rem;
+          line-height: 1.35;
+        }
+
+        .kpi-label {
+          font-size: 0.82rem;
+          line-height: 1.22;
+          max-width: 24ch;
+          margin-inline: auto;
+        }
+
+        .offer-text,
+        .learning-copy,
+        .pain-copy {
+          font-size: 0.94rem;
+          line-height: 1.34;
+        }
+
+        .pain-footer p {
+          font-size: 0.92rem;
+          line-height: 1.3;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <div class="brand">
+          <span class="brand-long">Academia IA para Emprendedores</span>
+          <span class="brand-short">Academia IA</span>
+        </div>
+        <a class="cta" href="https://venadigital.com.co/academia-ia-para-emprendedores/">Entrar por $13</a>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="hero hero-full">
+        <div class="hero-overlay wrap">
+          <div class="hero-content fade">
+            <h1>Convierte la IA en una herramienta real para tu negocio</h1>
+            <p class="lead">
+              Aprende a usar IA de forma práctica, clara y sin volverte técnico.
+              Clases paso a paso para emprendedores, no para ingenieros.
+            </p>
+            <div class="hero-split">
+              <aside class="card offer-card">
+                <span class="offer-tag">Acceso inmediato</span>
+                <p class="offer-title">Inversión hoy</p>
+                <h3 class="offer-price">$13 USD</h3>
+                <p class="offer-sub">Pago único · Sin mensualidades</p>
+                <ul class="offer-list">
+                  <li class="offer-item"><span class="offer-check">✓</span><span class="offer-text">Pago único. Sin suscripciones ni cobros ocultos.</span></li>
+                  <li class="offer-item"><span class="offer-check">✓</span><span class="offer-text">Nuevas clases y recursos prácticos cada semana.</span></li>
+                  <li class="offer-item"><span class="offer-check">✓</span><span class="offer-text">Comunidad privada para avanzar sin quedarte bloqueado.</span></li>
+                </ul>
+              </aside>
+            </div>
+            <p class="hero-cta-row">
+              <a class="cta" href="https://venadigital.com.co/academia-ia-para-emprendedores/">Acceder ahora por $13</a>
+              <a class="cta-outline" href="#aprendizaje">Ver todo lo que incluye</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="fade video-section">
+        <div class="card video-card">
+          <div class="video-wrap">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/hou9zkN4woY?rel=0"
+              title="Video Academia IA para Emprendedores"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section class="fade">
+        <h2>¿Te pasa algo de esto?</h2>
+        <div class="pain-grid">
+          <article class="card pain-card">
+            <div class="pain-head">
+              <span class="pain-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3 2.8 20h18.4L12 3z"></path>
+                  <path d="M12 9v5"></path>
+                  <circle cx="12" cy="17.5" r="1"></circle>
+                </svg>
+              </span>
+              <h3 class="pain-title">Resultados pobres con IA</h3>
+            </div>
+            <p class="muted pain-copy">Abres ChatGPT y el resultado no te ayuda.</p>
+          </article>
+          <article class="card pain-card">
+            <div class="pain-head">
+              <span class="pain-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="5" width="12" height="12" rx="2"></rect>
+                  <rect x="8" y="9" width="12" height="12" rx="2"></rect>
+                </svg>
+              </span>
+              <h3 class="pain-title">Acumulación sin acción</h3>
+            </div>
+            <p class="muted pain-copy">Guardas prompts y videos “para después” que nunca usas.</p>
+          </article>
+          <article class="card pain-card">
+            <div class="pain-head">
+              <span class="pain-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 3h12M6 21h12"></path>
+                  <path d="M8 3v4c0 2 2 3 4 5 2-2 4-3 4-5V3"></path>
+                  <path d="M8 21v-4c0-2 2-3 4-5 2 2 4 3 4 5v4"></path>
+                </svg>
+              </span>
+              <h3 class="pain-title">Mucho esfuerzo, poco retorno</h3>
+            </div>
+            <p class="muted pain-copy">Creas contenido, inviertes tiempo y no ves resultados.</p>
+          </article>
+          <article class="card pain-card">
+            <div class="pain-head">
+              <span class="pain-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M9 9.2 10.8 11M10.8 9.2 9 11"></path>
+                  <path d="M13.2 9.2 15 11M15 9.2 13.2 11"></path>
+                  <path d="M8.5 16c1-.9 2.2-1.4 3.5-1.4s2.5.5 3.5 1.4"></path>
+                </svg>
+              </span>
+              <h3 class="pain-title">Sensación de ir tarde</h3>
+            </div>
+            <p class="muted pain-copy">Sientes que todos avanzan con IA menos tú.</p>
+          </article>
+        </div>
+        <div class="pain-footer">
+          <p>La buena noticia: esto se resuelve con una ruta clara y aplicada.</p>
+          <a class="cta" href="https://venadigital.com.co/academia-ia-para-emprendedores/">Quiero esa ruta</a>
+        </div>
+      </section>
+
+      <section class="fade">
+        <h2>Qué es la Academia IA para Emprendedores</h2>
+        <div class="card about-split">
+          <picture class="feature-picture">
+            <source media="(max-width: 900px)" srcset="lauramobile.jpg" />
+            <img class="feature-image" src="lauradesktop.jpg" alt="Laura - Academia IA para Emprendedores" />
+          </picture>
+          <div class="about-copy">
+            <p class="muted">
+              Es una biblioteca práctica con ruta clara de inicio, clases 100% aplicadas y
+              contenido accionable para que uses la IA en tu negocio desde el primer día,
+              sin conocimientos previos.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="aprendizaje" class="fade">
+        <span class="section-kicker">Lo que dominarás</span>
+        <h2>Qué puedes aprender dentro</h2>
+        <div class="grid-3">
+          <article class="card feature-card">
+            <span class="learning-icon" aria-hidden="true">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="8" width="14" height="10" rx="3"></rect>
+                <path d="M12 4v4"></path>
+                <circle cx="9.5" cy="12.5" r="1"></circle>
+                <circle cx="14.5" cy="12.5" r="1"></circle>
+                <path d="M9 16h6"></path>
+              </svg>
+            </span>
+            <h3 class="learning-title">Asistente IA 24/7</h3>
+            <p class="learning-copy">Configura ChatGPT o Gemini como tu apoyo diario.</p>
+          </article>
+          <article class="card feature-card">
+            <span class="learning-icon" aria-hidden="true">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 4a8 8 0 1 0 0 16h1.5a2.5 2.5 0 0 0 0-5H12"></path>
+                <circle cx="8.5" cy="10" r="1"></circle>
+                <circle cx="11.5" cy="8.5" r="1"></circle>
+                <circle cx="14.5" cy="10" r="1"></circle>
+              </svg>
+            </span>
+            <h3 class="learning-title">Diseño pro sin ser diseñador</h3>
+            <p class="learning-copy">Crea piezas que venden, aunque no tengas experiencia.</p>
+          </article>
+          <article class="card feature-card">
+            <span class="learning-icon" aria-hidden="true">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3.5" y="6.5" width="17" height="11" rx="2"></rect>
+                <path d="m10 10 5 2-5 2z"></path>
+              </svg>
+            </span>
+            <h3 class="learning-title">Video y contenido que conecta</h3>
+            <p class="learning-copy">Produce Reels y videos paso a paso.</p>
+          </article>
+          <article class="card feature-card">
+            <span class="learning-icon" aria-hidden="true">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5h16"></path>
+                <rect x="6" y="11" width="2.8" height="6.5" rx="1"></rect>
+                <rect x="10.6" y="8" width="2.8" height="9.5" rx="1"></rect>
+                <rect x="15.2" y="5.5" width="2.8" height="12" rx="1"></rect>
+              </svg>
+            </span>
+            <h3 class="learning-title">Estrategia y decisiones</h3>
+            <p class="learning-copy">Analiza datos clave para decidir mejor.</p>
+          </article>
+          <article class="card feature-card">
+            <span class="learning-icon" aria-hidden="true">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 4c3 0 5 2 5 5-1.2 3.2-4.5 6.5-7.7 7.7-3 0-5-2-5-5C7.5 8.5 10.8 5.2 14 4z"></path>
+                <circle cx="14.5" cy="9.5" r="1.2"></circle>
+                <path d="m7 17-2 2M9.2 14.8 5 19"></path>
+              </svg>
+            </span>
+            <h3 class="learning-title">Contenido y ventas sin improvisar</h3>
+            <p class="learning-copy">Arma tu estructura comercial con claridad.</p>
+          </article>
+          <article class="card feature-card">
+            <span class="learning-icon" aria-hidden="true">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="2.8"></circle>
+                <path d="M12 4v2.2M12 17.8V20M4 12h2.2M17.8 12H20M6.3 6.3l1.6 1.6M16.1 16.1l1.6 1.6M17.7 6.3l-1.6 1.6M7.9 16.1 6.3 17.7"></path>
+              </svg>
+            </span>
+            <h3 class="learning-title">Productividad emprendedora</h3>
+            <p class="learning-copy">Diseña rutinas para recuperar foco y tiempo.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="fade">
+        <span class="section-kicker">Resultados reales</span>
+        <h2>Emprendedores ya están aplicando esta metodología</h2>
+        <div class="social-kpis">
+          <article class="card kpi-card">
+            <span class="kpi-value">+500</span>
+            <span class="kpi-label">Emprendedores impactados</span>
+          </article>
+          <article class="card kpi-card">
+            <span class="kpi-value">Aplica desde la clase 1</span>
+            <span class="kpi-label">Clases 100% prácticas por temas específicos</span>
+          </article>
+          <article class="card kpi-card">
+            <span class="kpi-value">Actualizaciones semanales</span>
+            <span class="kpi-label">No es un curso más: cada semana aprendes algo nuevo para tu negocio</span>
+          </article>
+        </div>
+        <div class="social-carousel" data-carousel>
+          <div class="social-viewport">
+            <div class="social-track">
+              <article class="social-slide">
+                <div class="card social-card with-photo">
+                  <div class="quote-header">
+                    <img class="quote-avatar" src="testimoniomarcela.jpg" alt="Foto de Marcela" />
+                  </div>
+                  <div class="quote-body">
+                    <p class="quote">“Pasé de guardar prompts a tener una rutina clara y aplicable en mi negocio.”</p>
+                    <p class="quote-author">— Emprendedora de servicios digitales</p>
+                  </div>
+                </div>
+              </article>
+              <article class="social-slide">
+                <div class="card social-card">
+                  <p class="quote">“En pocos días ya estaba creando contenido más rápido y con mejor enfoque.”</p>
+                  <p class="quote-author">— Creadora de marca personal</p>
+                </div>
+              </article>
+              <article class="social-slide">
+                <div class="card social-card">
+                  <p class="quote">“Lo que más valoro es que no me abruma: todo viene paso a paso.”</p>
+                  <p class="quote-author">— Dueña de negocio online</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="social-controls">
+            <div class="social-nav">
+              <button class="social-btn" type="button" data-prev aria-label="Testimonio anterior">←</button>
+              <button class="social-btn" type="button" data-next aria-label="Siguiente testimonio">→</button>
+            </div>
+          </div>
+          <div class="social-progress" aria-hidden="true">
+            <div class="social-progress-bar" data-progress></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="fade">
+        <h2>Antes de entrar</h2>
+        <div class="grid-2">
+          <div class="card ok">
+            <h3 class="decision-title">Esto es para ti si...</h3>
+            <ul class="decision-list">
+              <li class="decision-item"><span class="decision-mark ok-mark">✓</span><span>Quieres una ruta clara para aplicar IA en tu negocio.</span></li>
+              <li class="decision-item"><span class="decision-mark ok-mark">✓</span><span>Te abruma la cantidad de herramientas sueltas.</span></li>
+              <li class="decision-item"><span class="decision-mark ok-mark">✓</span><span>Buscas ahorrar tiempo y actuar con más orden.</span></li>
+            </ul>
+          </div>
+          <div class="card no">
+            <h3 class="decision-title">Esto NO es para ti si...</h3>
+            <ul class="decision-list">
+              <li class="decision-item"><span class="decision-mark no-mark">×</span><span>Buscas atajos mágicos sin hacer nada.</span></li>
+              <li class="decision-item"><span class="decision-mark no-mark">×</span><span>Solo quieres consumir contenido sin aplicarlo.</span></li>
+              <li class="decision-item"><span class="decision-mark no-mark">×</span><span>Quieres teoría profunda o aprender a programar.</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="fade">
+        <h2>Cómo funciona (paso a paso)</h2>
+        <div class="card steps">
+          <div class="step">Pagas una sola vez: <strong>$13 USD</strong>.</div>
+          <div class="step">Recibes acceso inmediato a la academia y ruta de inicio.</div>
+          <div class="step">Avanzas a tu ritmo con clases nuevas cada semana.</div>
+        </div>
+      </section>
+
+      <section id="incluye" class="fade">
+        <span class="section-kicker">Tu acceso completo</span>
+        <h2>Lo que incluye la Academia</h2>
+        <div class="include-grid">
+          <article class="card include-card">
+            <span class="include-icon" aria-hidden="true">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="11" width="14" height="9" rx="2"></rect>
+                <path d="M9 11V8a3 3 0 0 1 6 0"></path>
+              </svg>
+            </span>
+            <div>
+              <h3 class="include-title">Acceso de por vida</h3>
+              <p class="include-copy">Sin fecha de caducidad y con acceso inmediato.</p>
+            </div>
+          </article>
+          <article class="card include-card">
+            <span class="include-icon" aria-hidden="true">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 7.5a3 3 0 0 1 6 0 2.6 2.6 0 0 1 2.5 2.6A2.9 2.9 0 0 1 15 13v2a3 3 0 0 1-6 0v-2a2.9 2.9 0 0 1-2.5-2.9A2.6 2.6 0 0 1 9 7.5z"></path>
+                <path d="M12 6v12"></path>
+              </svg>
+            </span>
+            <div>
+              <h3 class="include-title">Clases nuevas cada semana</h3>
+              <p class="include-copy">Contenido práctico para aplicar IA de forma constante.</p>
+            </div>
+          </article>
+          <article class="card include-card">
+            <span class="include-icon" aria-hidden="true">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="8" cy="9" r="2.5"></circle>
+                <circle cx="16" cy="9" r="2.5"></circle>
+                <path d="M4.5 18a3.8 3.8 0 0 1 7 0M12.5 18a3.8 3.8 0 0 1 7 0"></path>
+              </svg>
+            </span>
+            <div>
+              <h3 class="include-title">Comunidad privada</h3>
+              <p class="include-copy">Acompañamiento real para avanzar sin bloquearte.</p>
+            </div>
+          </article>
+          <article class="card include-card">
+            <span class="include-icon" aria-hidden="true">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3.5" y="6.5" width="17" height="11" rx="2"></rect>
+                <path d="M3.5 10.2h17"></path>
+                <path d="M7.2 14h3.6"></path>
+              </svg>
+            </span>
+            <div>
+              <h3 class="include-title">Sin mensualidades</h3>
+              <p class="include-copy">Pago único. Sin renovaciones ni cobros ocultos.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="fade">
+        <h2>Garantía sin riesgo</h2>
+        <div class="card guarantee-card">
+          <span class="guarantee-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3 5.5 6v6.8c0 3.8 2.7 6.7 6.5 8.2 3.8-1.5 6.5-4.4 6.5-8.2V6L12 3z"></path>
+              <path d="m9.2 12 1.8 1.8 3.8-3.8"></path>
+            </svg>
+          </span>
+          <p>
+            Tienes <strong>7 días de garantía</strong>. Entra, revisa el contenido y si sientes que no es para ti,
+            escribes y se devuelve tu dinero.
+          </p>
+        </div>
+      </section>
+
+      <section class="fade faq">
+        <h2>Preguntas frecuentes</h2>
+        <div class="card">
+          <details>
+            <summary>
+              <span class="faq-q"><span class="faq-icon">?</span>¿Necesito conocimientos técnicos?</span>
+              <span class="faq-arrow">⌄</span>
+            </summary>
+            <p>No. Está diseñada para emprendedores, con ejemplos prácticos y ruta clara.</p>
+          </details>
+          <details>
+            <summary>
+              <span class="faq-q"><span class="faq-icon">?</span>¿Es suscripción?</span>
+              <span class="faq-arrow">⌄</span>
+            </summary>
+            <p>No. Es pago único de $13 USD, con acceso de por vida.</p>
+          </details>
+          <details>
+            <summary>
+              <span class="faq-q"><span class="faq-icon">?</span>¿Sirve para mi tipo de negocio?</span>
+              <span class="faq-arrow">⌄</span>
+            </summary>
+            <p>Sí, si tienes negocio o marca personal y quieres usar IA para producir y vender mejor.</p>
+          </details>
+          <details>
+            <summary>
+              <span class="faq-q"><span class="faq-icon">?</span>¿Dónde accedo al contenido?</span>
+              <span class="faq-arrow">⌄</span>
+            </summary>
+            <p>En plataforma online, desde computador o celular, cuando quieras.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="fade">
+        <h2>Sobre mí</h2>
+        <div class="card about-me-split">
+          <picture>
+            <source media="(max-width: 900px)" srcset="fotolauramobile.jpg" />
+            <img class="about-me-image" src="fotolaura.jpg" alt="Laura, creadora de Vena.Digital" />
+          </picture>
+          <p class="about-me-copy">
+            Soy <strong>Laura</strong>, creadora de <strong>@Vena.Digital</strong>. Ayudo a emprendedores a aplicar IA
+            cuando la tecnología abruma, confunde o frena. Mi enfoque es práctico, claro y honesto:
+            sin promesas falsas, con implementación real.
+          </p>
+        </div>
+      </section>
+
+      <section id="comprar" class="fade">
+        <div class="final">
+          <h2>La IA no se detiene. Tu negocio tampoco.</h2>
+          <p>Esto no es un curso más. Es una forma clara y práctica de usar IA para crecer.</p>
+          <ul class="final-points">
+            <li>Acceso inmediato de por vida por un solo pago.</li>
+            <li>Ruta paso a paso para implementar sin volverte técnico.</li>
+            <li>Actualizaciones constantes y comunidad para acompañarte.</li>
+          </ul>
+          <p class="final-note">Hoy puedes entrar por $13 USD y empezar de inmediato.</p>
+          <a class="cta" href="https://venadigital.com.co/academia-ia-para-emprendedores/">Entrar ahora por $13</a>
+        </div>
+      </section>
+    </main>
+    <script>
+      (() => {
+        // 1) Scroll reveal + 2) stagger for card groups
+        const staggerGroups = [
+          { selector: ".pain-grid", step: 90 },
+          { selector: "#aprendizaje .grid-3", step: 80 },
+          { selector: ".include-grid", step: 90 },
+          { selector: ".social-kpis", step: 80 },
+          { selector: ".grid-2", step: 90 },
+          { selector: ".steps", step: 90 },
+        ];
+
+        staggerGroups.forEach(({ selector, step }) => {
+          document.querySelectorAll(selector).forEach((group) => {
+            const items = Array.from(group.children).filter((node) => node.nodeType === 1);
+            items.forEach((item, index) => {
+              item.classList.add("fade");
+              item.style.setProperty("--reveal-delay", `${index * step}ms`);
+              item.style.setProperty("--reveal-duration", "0.58s");
+            });
+          });
+        });
+
+        const revealItems = Array.from(document.querySelectorAll(".fade"));
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (reduceMotion) {
+          revealItems.forEach((el) => el.classList.add("is-visible"));
+        } else {
+          document.body.classList.add("reveal-ready");
+          const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              });
+            },
+            {
+              threshold: 0.14,
+              rootMargin: "0px 0px -8% 0px",
+            }
+          );
+
+          revealItems.forEach((el) => revealObserver.observe(el));
+        }
+
+        const carousel = document.querySelector("[data-carousel]");
+        if (!carousel) return;
+
+        const track = carousel.querySelector(".social-track");
+        const slides = Array.from(carousel.querySelectorAll(".social-slide"));
+        const prev = carousel.querySelector("[data-prev]");
+        const next = carousel.querySelector("[data-next]");
+        const progress = carousel.querySelector("[data-progress]");
+        let current = 0;
+        let timer;
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchDeltaX = 0;
+
+        const goTo = (index) => {
+          current = (index + slides.length) % slides.length;
+          track.style.transform = `translateX(-${current * 100}%)`;
+          if (progress) progress.style.width = `${((current + 1) / slides.length) * 100}%`;
+        };
+
+        const start = () => {
+          if (reduceMotion || document.hidden) return;
+          stop();
+          timer = setInterval(() => goTo(current + 1), 4500);
+        };
+
+        const stop = () => {
+          if (timer) clearInterval(timer);
+        };
+
+        prev.addEventListener("click", () => {
+          goTo(current - 1);
+          start();
+        });
+        next.addEventListener("click", () => {
+          goTo(current + 1);
+          start();
+        });
+        carousel.addEventListener("mouseenter", stop);
+        carousel.addEventListener("mouseleave", start);
+        document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
+
+        carousel.addEventListener(
+          "touchstart",
+          (e) => {
+            const t = e.changedTouches[0];
+            touchStartX = t.clientX;
+            touchStartY = t.clientY;
+            touchDeltaX = 0;
+            stop();
+          },
+          { passive: true }
+        );
+
+        carousel.addEventListener(
+          "touchmove",
+          (e) => {
+            const t = e.changedTouches[0];
+            touchDeltaX = t.clientX - touchStartX;
+            const deltaY = Math.abs(t.clientY - touchStartY);
+            if (Math.abs(touchDeltaX) > 12 && deltaY < 28) {
+              // Keep horizontal swipe smooth on mobile.
+              e.preventDefault();
+            }
+          },
+          { passive: false }
+        );
+
+        carousel.addEventListener(
+          "touchend",
+          () => {
+            const threshold = 44;
+            if (touchDeltaX <= -threshold) goTo(current + 1);
+            else if (touchDeltaX >= threshold) goTo(current - 1);
+            start();
+          },
+          { passive: true }
+        );
+
+        goTo(0);
+        start();
+      })();
+    </script>
+  </body>
+</html>
