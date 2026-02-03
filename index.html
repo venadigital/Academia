@@ -1816,7 +1816,8 @@
           UY: "UYU",
           US: "USD",
         };
-        const ZERO_DECIMAL_CURRENCIES = new Set(["COP", "CLP", "PYG"]);
+        const ZERO_DECIMAL_CURRENCIES = new Set(["ARS", "BOB", "CLP", "COP", "CRC", "MXN", "PEN", "PYG", "UYU"]);
+        const DOLLAR_STYLE_CURRENCIES = new Set(["ARS", "BOB", "CLP", "COP", "CRC", "MXN", "PEN", "PYG", "UYU"]);
 
         const getRegionFromBrowser = () => {
           const localeCandidates = [navigator.language, ...(navigator.languages || [])].filter(Boolean);
@@ -1870,15 +1871,28 @@
           return null;
         };
 
+        const formatWithDots = (value) => {
+          return Math.round(value)
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        };
+
         const formatCurrency = (amount, currency) => {
-          const locale = navigator.language || "es-CO";
+          if (currency === "USD") return `$${formatWithDots(amount)}`;
+          if (DOLLAR_STYLE_CURRENCIES.has(currency)) return `$${formatWithDots(amount)}`;
+          if (currency === "BRL") return `R$ ${formatWithDots(amount)}`;
+          if (currency === "EUR") return `€${formatWithDots(amount)}`;
+
+          const locale = "es-CO";
           const decimals = ZERO_DECIMAL_CURRENCIES.has(currency) ? 0 : 2;
           return new Intl.NumberFormat(locale, {
             style: "currency",
             currency,
             minimumFractionDigits: decimals,
             maximumFractionDigits: decimals,
-          }).format(amount);
+          })
+            .format(amount)
+            .replace(/,/g, ".");
         };
 
         const renderDynamicPrice = (formattedPrice) => {
