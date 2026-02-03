@@ -64,8 +64,23 @@
       }
 
       .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
         font-weight: 800;
         letter-spacing: 0.02em;
+      }
+
+      .brand-logo {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+        flex: 0 0 auto;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        filter: brightness(0) invert(1);
+        opacity: 0.95;
       }
 
       .brand-short {
@@ -183,6 +198,10 @@
         margin: 0 0 14px;
         letter-spacing: -0.02em;
         max-width: 16ch;
+      }
+
+      .text-brand {
+        color: var(--brand);
       }
 
       .lead {
@@ -923,6 +942,15 @@
         font-weight: 700;
       }
 
+      .site-footer {
+        margin: 28px 0 18px;
+        padding: 14px 16px;
+        border-top: 1px solid #242424;
+        color: #bdbdbd;
+        font-size: 0.9rem;
+        text-align: center;
+      }
+
       .guarantee-card {
         display: flex;
         align-items: flex-start;
@@ -1126,6 +1154,11 @@
           line-height: 1.1;
         }
 
+        .brand-logo {
+          width: 36px;
+          height: 36px;
+        }
+
         .brand-long {
           display: none;
         }
@@ -1148,13 +1181,16 @@
         .hero-full {
           min-height: 90svh;
           background:
+            radial-gradient(
+              120% 80% at 50% 0%,
+              rgba(245, 196, 0, 0.12) 0%,
+              rgba(245, 196, 0, 0) 55%
+            ),
             linear-gradient(
               180deg,
-              rgba(0, 0, 0, 0.2) 0%,
-              rgba(0, 0, 0, 0.35) 36%,
-              rgba(0, 0, 0, 0.75) 100%
-            ),
-            url("Banner_academia_mobile.jpg") 50% 18% / cover no-repeat;
+              rgba(0, 0, 0, 0.98) 0%,
+              rgba(0, 0, 0, 0.94) 100%
+            );
         }
 
         .hero-content {
@@ -1304,8 +1340,9 @@
         <div class="brand">
           <span class="brand-long">Academia IA para Emprendedores</span>
           <span class="brand-short">Academia IA</span>
+          <img class="brand-logo" src="Logo_vena_digital.svg" alt="Logo Vena Digital" />
         </div>
-        <a class="cta" href="https://venadigital.com.co/academia-ia-para-emprendedores/">Entrar por $13</a>
+        <a class="cta" data-price-cta="Entrar por" href="https://pay.hotmart.com/J101223289G?checkoutMode=10&bid=1759515744892">Entrar por $13</a>
       </div>
     </header>
 
@@ -1315,7 +1352,7 @@
           <div class="hero-content fade">
             <div class="hero-mobile-visual" aria-hidden="true"></div>
             <div class="hero-text-stack">
-              <h1>Convierte la IA en una herramienta real para tu negocio</h1>
+              <h1>Convierte la IA en una herramienta <span class="text-brand">real</span> para tu negocio</h1>
               <p class="lead">
                 Aprende a usar IA de forma práctica, clara y sin volverte técnico.
                 Clases paso a paso para emprendedores, no para ingenieros.
@@ -1324,7 +1361,7 @@
                 <aside class="card offer-card">
                   <span class="offer-tag">Acceso inmediato</span>
                   <p class="offer-title">Inversión hoy</p>
-                  <h3 class="offer-price">$13 USD</h3>
+                  <h3 class="offer-price" data-price-main>$13 USD</h3>
                   <p class="offer-sub">Pago único · Sin mensualidades</p>
                   <ul class="offer-list">
                     <li class="offer-item"><span class="offer-check">✓</span><span class="offer-text">Pago único. Sin suscripciones ni cobros ocultos.</span></li>
@@ -1334,7 +1371,7 @@
                 </aside>
               </div>
               <p class="hero-cta-row">
-                <a class="cta" href="https://venadigital.com.co/academia-ia-para-emprendedores/">Acceder ahora por $13</a>
+                <a class="cta" data-price-cta="Acceder ahora por" href="https://pay.hotmart.com/J101223289G?checkoutMode=10&bid=1759515744892">Acceder ahora por $13</a>
                 <a class="cta-outline" href="#aprendizaje">Ver todo lo que incluye</a>
               </p>
             </div>
@@ -1414,7 +1451,7 @@
         </div>
         <div class="pain-footer">
           <p>La buena noticia: esto se resuelve con una ruta clara y aplicada.</p>
-          <a class="cta" href="https://venadigital.com.co/academia-ia-para-emprendedores/">Quiero esa ruta</a>
+          <a class="cta" href="https://pay.hotmart.com/J101223289G?checkoutMode=10&bid=1759515744892">Quiero esa ruta</a>
         </div>
       </section>
 
@@ -1449,8 +1486,8 @@
                 <path d="M9 16h6"></path>
               </svg>
             </span>
-            <h3 class="learning-title">Asistente IA 24/7</h3>
-            <p class="learning-copy">Configura ChatGPT o Gemini como tu apoyo diario.</p>
+            <h3 class="learning-title">IA que te ahorra horas</h3>
+            <p class="learning-copy">Configura tu asistente y resuelve tareas diarias en minutos.</p>
           </article>
           <article class="card feature-card">
             <span class="learning-icon" aria-hidden="true">
@@ -1461,8 +1498,8 @@
                 <circle cx="14.5" cy="10" r="1"></circle>
               </svg>
             </span>
-            <h3 class="learning-title">Diseño pro sin ser diseñador</h3>
-            <p class="learning-copy">Crea piezas que venden, aunque no tengas experiencia.</p>
+            <h3 class="learning-title">Diseña en minutos, no en horas</h3>
+            <p class="learning-copy">Crea imágenes de tus productos pro sin depender de un diseñador</p>
           </article>
           <article class="card feature-card">
             <span class="learning-icon" aria-hidden="true">
@@ -1471,8 +1508,8 @@
                 <path d="m10 10 5 2-5 2z"></path>
               </svg>
             </span>
-            <h3 class="learning-title">Video y contenido que conecta</h3>
-            <p class="learning-copy">Produce Reels y videos paso a paso.</p>
+            <h3 class="learning-title">Videos con IA para vender más</h3>
+            <p class="learning-copy">Crea contenido que conecta con tu cliente ideal</p>
           </article>
           <article class="card feature-card">
             <span class="learning-icon" aria-hidden="true">
@@ -1483,8 +1520,8 @@
                 <rect x="15.2" y="5.5" width="2.8" height="12" rx="1"></rect>
               </svg>
             </span>
-            <h3 class="learning-title">Estrategia y decisiones</h3>
-            <p class="learning-copy">Analiza datos clave para decidir mejor.</p>
+            <h3 class="learning-title">Invierte mejor en tu negocio</h3>
+            <p class="learning-copy">Analiza tus ventas y campañas en Meta Ads para dejar de perder dinero</p>
           </article>
           <article class="card feature-card">
             <span class="learning-icon" aria-hidden="true">
@@ -1494,8 +1531,8 @@
                 <path d="m7 17-2 2M9.2 14.8 5 19"></path>
               </svg>
             </span>
-            <h3 class="learning-title">Contenido y ventas sin improvisar</h3>
-            <p class="learning-copy">Arma tu estructura comercial con claridad.</p>
+            <h3 class="learning-title">Tu vitrina digital lista para vender</h3>
+            <p class="learning-copy">Crea tu página de ventas o catálogo y empieza a recibir clientes online</p>
           </article>
           <article class="card feature-card">
             <span class="learning-icon" aria-hidden="true">
@@ -1504,8 +1541,8 @@
                 <path d="M12 4v2.2M12 17.8V20M4 12h2.2M17.8 12H20M6.3 6.3l1.6 1.6M16.1 16.1l1.6 1.6M17.7 6.3l-1.6 1.6M7.9 16.1 6.3 17.7"></path>
               </svg>
             </span>
-            <h3 class="learning-title">Productividad emprendedora</h3>
-            <p class="learning-copy">Diseña rutinas para recuperar foco y tiempo.</p>
+            <h3 class="learning-title">No tienes que hacerlo todo solo</h3>
+            <p class="learning-copy">Crea un sistema con IA para gestionar pendientes y producir mejor.</p>
           </article>
         </div>
       </section>
@@ -1515,8 +1552,8 @@
         <h2>Emprendedores ya están aplicando esta metodología</h2>
         <div class="social-kpis">
           <article class="card kpi-card">
-            <span class="kpi-value">+500</span>
-            <span class="kpi-label">Emprendedores impactados</span>
+            <span class="kpi-value">+ 120</span>
+            <span class="kpi-label">Emprendedores ya hacen parte de la comunidad</span>
           </article>
           <article class="card kpi-card">
             <span class="kpi-value">Aplica desde la clase 1</span>
@@ -1536,21 +1573,44 @@
                     <img class="quote-avatar" src="testimoniomarcela.jpg" alt="Foto de Marcela" />
                   </div>
                   <div class="quote-body">
-                    <p class="quote">“Pasé de guardar prompts a tener una rutina clara y aplicable en mi negocio.”</p>
-                    <p class="quote-author">— Emprendedora de servicios digitales</p>
+                    <p class="quote">
+                      “Yo no entendía nada de inteligencia artificial, solo usaba ChatGPT para pedir recetas, pero
+                      ahora hace parte de mi día a día gracias a las explicaciones que con tanto cariño nos da Lalis
+                      en las clases.”
+                    </p>
+                    <p class="quote-author">— @SerElemental</p>
                   </div>
                 </div>
               </article>
               <article class="social-slide">
-                <div class="card social-card">
-                  <p class="quote">“En pocos días ya estaba creando contenido más rápido y con mejor enfoque.”</p>
-                  <p class="quote-author">— Creadora de marca personal</p>
+                <div class="card social-card with-photo">
+                  <div class="quote-header">
+                    <img class="quote-avatar" src="testimoniosaid.jpg" alt="Foto de @Autonomia.financiera" />
+                  </div>
+                  <div class="quote-body">
+                    <p class="quote">
+                      “Me encanta la manera de explicar de Laura. Soy un emprendedor que recientemente está comenzando
+                      con su marca personal y todo lo que ella enseña en sus clases me ha servido para crear contenido
+                      en mis redes sociales y hasta definir cómo proyectar mejor mi estrategia.”
+                    </p>
+                    <p class="quote-author">— @Autonomia.financiera</p>
+                  </div>
                 </div>
               </article>
               <article class="social-slide">
-                <div class="card social-card">
-                  <p class="quote">“Lo que más valoro es que no me abruma: todo viene paso a paso.”</p>
-                  <p class="quote-author">— Dueña de negocio online</p>
+                <div class="card social-card with-photo">
+                  <div class="quote-header">
+                    <img class="quote-avatar" src="testimoniomayitos.jpg" alt="Foto de alumna de 72 años" />
+                  </div>
+                  <div class="quote-body">
+                    <p class="quote">
+                      “Soy una persona de 72 años y no me había decidido a aprender inteligencia artificial porque creí
+                      que estaba muy vieja para eso y no soy la más hábil con los computadores. Pero Laura en sus
+                      clases, con total dedicación, explicando todo paso a paso, me hizo perder el miedo. Le agradezco
+                      mucho explicar todo desde cero, para gente que no tiene conocimientos, pero que quiere empezar.”
+                    </p>
+                    <p class="quote-author">— Mariela Vila</p>
+                  </div>
                 </div>
               </article>
             </div>
@@ -1592,7 +1652,7 @@
       <section class="fade">
         <h2>Cómo funciona (paso a paso)</h2>
         <div class="card steps">
-          <div class="step">Pagas una sola vez: <strong>$13 USD</strong>.</div>
+          <div class="step">Pagas una sola vez: <strong data-price-inline>$13 USD</strong>.</div>
           <div class="step">Recibes acceso inmediato a la academia y ruta de inicio.</div>
           <div class="step">Avanzas a tu ritmo con clases nuevas cada semana.</div>
         </div>
@@ -1686,7 +1746,7 @@
               <span class="faq-q"><span class="faq-icon">?</span>¿Es suscripción?</span>
               <span class="faq-arrow">⌄</span>
             </summary>
-            <p>No. Es pago único de $13 USD, con acceso de por vida.</p>
+            <p>No. Es pago único de <span data-price-inline>$13 USD</span>, con acceso de por vida.</p>
           </details>
           <details>
             <summary>
@@ -1729,13 +1789,112 @@
             <li>Ruta paso a paso para implementar sin volverte técnico.</li>
             <li>Actualizaciones constantes y comunidad para acompañarte.</li>
           </ul>
-          <p class="final-note">Hoy puedes entrar por $13 USD y empezar de inmediato.</p>
-          <a class="cta" href="https://venadigital.com.co/academia-ia-para-emprendedores/">Entrar ahora por $13</a>
+          <p class="final-note">Hoy puedes entrar por <span data-price-inline>$13 USD</span> y empezar de inmediato.</p>
+          <a class="cta" data-price-cta="Entrar ahora por" href="https://pay.hotmart.com/J101223289G?checkoutMode=10&bid=1759515744892">Entrar ahora por $13</a>
         </div>
       </section>
     </main>
+    <footer class="site-footer">
+      © 2026 Vena Digital. Todos los derechos reservados. Pago seguro a través de Hotmart.
+    </footer>
     <script>
       (() => {
+        const BASE_PRICE_USD = 13;
+        const COUNTRY_TO_CURRENCY = {
+          AR: "ARS",
+          BO: "BOB",
+          BR: "BRL",
+          CL: "CLP",
+          CO: "COP",
+          CR: "CRC",
+          EC: "USD",
+          ES: "EUR",
+          MX: "MXN",
+          PA: "USD",
+          PE: "PEN",
+          PY: "PYG",
+          UY: "UYU",
+          US: "USD",
+        };
+        const ZERO_DECIMAL_CURRENCIES = new Set(["COP", "CLP", "PYG"]);
+
+        const getRegionFromBrowser = () => {
+          const localeCandidates = [navigator.language, ...(navigator.languages || [])].filter(Boolean);
+          for (const locale of localeCandidates) {
+            try {
+              const region = new Intl.Locale(locale).region;
+              if (region) return region.toUpperCase();
+            } catch (_err) {
+              const match = locale.match(/[-_]([A-Za-z]{2})$/);
+              if (match) return match[1].toUpperCase();
+            }
+          }
+          return null;
+        };
+
+        const getCountryCode = async () => {
+          const browserRegion = getRegionFromBrowser();
+          if (browserRegion && COUNTRY_TO_CURRENCY[browserRegion]) return browserRegion;
+
+          try {
+            const res = await fetch("https://ipapi.co/json/", { cache: "no-store" });
+            if (!res.ok) return "US";
+            const data = await res.json();
+            const code = String(data.country_code || "").toUpperCase();
+            return COUNTRY_TO_CURRENCY[code] ? code : "US";
+          } catch (_err) {
+            return "US";
+          }
+        };
+
+        const getLocalAmount = async (currency) => {
+          if (currency === "USD") return BASE_PRICE_USD;
+          try {
+            const res = await fetch(`https://api.frankfurter.app/latest?from=USD&to=${currency}`, {
+              cache: "no-store",
+            });
+            if (!res.ok) return BASE_PRICE_USD;
+            const data = await res.json();
+            const rate = data?.rates?.[currency];
+            return typeof rate === "number" ? BASE_PRICE_USD * rate : BASE_PRICE_USD;
+          } catch (_err) {
+            return BASE_PRICE_USD;
+          }
+        };
+
+        const formatCurrency = (amount, currency) => {
+          const locale = navigator.language || "es-CO";
+          const decimals = ZERO_DECIMAL_CURRENCIES.has(currency) ? 0 : 2;
+          return new Intl.NumberFormat(locale, {
+            style: "currency",
+            currency,
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals,
+          }).format(amount);
+        };
+
+        const renderDynamicPrice = (formattedPrice) => {
+          const inlineTargets = document.querySelectorAll("[data-price-inline], [data-price-main]");
+          inlineTargets.forEach((el) => {
+            el.textContent = formattedPrice;
+          });
+
+          document.querySelectorAll("[data-price-cta]").forEach((btn) => {
+            const prefix = btn.getAttribute("data-price-cta");
+            btn.textContent = `${prefix} ${formattedPrice}`;
+          });
+        };
+
+        const initDynamicPricing = async () => {
+          const countryCode = await getCountryCode();
+          const currency = COUNTRY_TO_CURRENCY[countryCode] || "USD";
+          const localAmount = await getLocalAmount(currency);
+          const formattedPrice = formatCurrency(localAmount, currency);
+          renderDynamicPrice(formattedPrice);
+        };
+
+        initDynamicPricing();
+
         // 1) Scroll reveal + 2) stagger for card groups
         const staggerGroups = [
           { selector: ".pain-grid", step: 90 },
