@@ -1847,19 +1847,27 @@
           }
         };
 
-        const getLocalAmount = async (currency) => {
-          if (currency === "USD") return BASE_PRICE_USD;
-          try {
-            const res = await fetch(`https://api.frankfurter.app/latest?from=USD&to=${currency}`, {
-              cache: "no-store",
-            });
-            if (!res.ok) return BASE_PRICE_USD;
-            const data = await res.json();
-            const rate = data?.rates?.[currency];
-            return typeof rate === "number" ? BASE_PRICE_USD * rate : BASE_PRICE_USD;
-          } catch (_err) {
-            return BASE_PRICE_USD;
+        const getUsdRate = async (currency) => {
+          if (currency === "USD") return 1;
+
+          const providers = [
+            "https://open.er-api.com/v6/latest/USD",
+            "https://api.exchangerate-api.com/v4/latest/USD",
+            `https://api.frankfurter.app/latest?from=USD&to=${currency}`,
+          ];
+
+          for (const endpoint of providers) {
+            try {
+              const res = await fetch(endpoint, { cache: "no-store" });
+              if (!res.ok) continue;
+              const data = await res.json();
+              const rate = data?.rates?.[currency];
+              if (typeof rate === "number" && Number.isFinite(rate) && rate > 0) return rate;
+            } catch (_err) {
+              // Try next provider.
+            }
           }
+          return null;
         };
 
         const formatCurrency = (amount, currency) => {
@@ -1887,8 +1895,10 @@
 
         const initDynamicPricing = async () => {
           const countryCode = await getCountryCode();
-          const currency = COUNTRY_TO_CURRENCY[countryCode] || "USD";
-          const localAmount = await getLocalAmount(currency);
+          const requestedCurrency = COUNTRY_TO_CURRENCY[countryCode] || "USD";
+          const rate = await getUsdRate(requestedCurrency);
+          const currency = rate ? requestedCurrency : "USD";
+          const localAmount = rate ? BASE_PRICE_USD * rate : BASE_PRICE_USD;
           const formattedPrice = formatCurrency(localAmount, currency);
           renderDynamicPrice(formattedPrice);
         };
