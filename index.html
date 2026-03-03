@@ -255,8 +255,45 @@
       }
 
       .offer-card {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
         background: var(--card-bg-strong);
         border-color: rgba(255, 221, 102, 0.26);
+      }
+
+      .offer-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .offer-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        pointer-events: none;
+        opacity: 0.62;
+        background: conic-gradient(
+          from 0deg,
+          transparent 0deg,
+          rgba(245, 196, 0, 0.05) 80deg,
+          rgba(245, 196, 0, 0.9) 118deg,
+          rgba(245, 196, 0, 0.06) 156deg,
+          transparent 240deg
+        );
+        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: offer-border-shine 7s linear infinite;
+      }
+
+      @keyframes offer-border-shine {
+        to {
+          transform: rotate(360deg);
+        }
       }
 
       .offer-tag {
@@ -1009,6 +1046,11 @@
         .social-track,
         .social-progress-bar {
           transition: none;
+        }
+
+        .offer-card::before {
+          animation: none;
+          opacity: 0.36;
         }
       }
 
