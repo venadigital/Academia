@@ -274,20 +274,41 @@
         border-radius: inherit;
         padding: 1px;
         pointer-events: none;
-        opacity: 0.62;
-        background: conic-gradient(
-          from 0deg,
-          transparent 0deg,
-          rgba(245, 196, 0, 0.05) 80deg,
-          rgba(245, 196, 0, 0.9) 118deg,
-          rgba(245, 196, 0, 0.06) 156deg,
-          transparent 240deg
+        opacity: 0.78;
+        background: linear-gradient(
+          140deg,
+          rgba(245, 196, 0, 0.36) 0%,
+          rgba(255, 255, 255, 0.14) 45%,
+          rgba(245, 196, 0, 0.2) 100%
         );
         mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
         -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
-        animation: offer-border-shine 7s linear infinite;
+      }
+
+      .offer-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 2px;
+        pointer-events: none;
+        opacity: 0.96;
+        background: conic-gradient(
+          from 180deg,
+          transparent 0deg,
+          transparent 300deg,
+          rgba(255, 247, 188, 0.12) 320deg,
+          rgba(245, 196, 0, 1) 336deg,
+          rgba(255, 230, 120, 0.62) 350deg,
+          transparent 360deg
+        );
+        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: offer-border-shine 3.9s linear infinite;
       }
 
       @keyframes offer-border-shine {
@@ -1049,8 +1070,12 @@
         }
 
         .offer-card::before {
+          opacity: 0.46;
+        }
+
+        .offer-card::after {
           animation: none;
-          opacity: 0.36;
+          opacity: 0.55;
         }
       }
 
