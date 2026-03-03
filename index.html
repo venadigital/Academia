@@ -294,26 +294,35 @@
         border-radius: inherit;
         padding: 2px;
         pointer-events: none;
-        opacity: 0.96;
-        background: conic-gradient(
-          from 180deg,
-          transparent 0deg,
-          transparent 300deg,
-          rgba(255, 247, 188, 0.12) 320deg,
-          rgba(245, 196, 0, 1) 336deg,
-          rgba(255, 230, 120, 0.62) 350deg,
-          transparent 360deg
+        opacity: 0.9;
+        will-change: background-position;
+        background-image: radial-gradient(
+          transparent,
+          transparent,
+          rgba(255, 242, 168, 0.68),
+          rgba(245, 196, 0, 0.92),
+          rgba(255, 242, 168, 0.68),
+          transparent,
+          transparent
         );
+        background-size: 300% 300%;
+        background-position: 0% 0%;
         mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
         -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
-        animation: offer-border-shine 3.9s linear infinite;
+        animation: offer-border-pulse 4.2s linear infinite;
       }
 
-      @keyframes offer-border-shine {
-        to {
-          transform: rotate(360deg);
+      @keyframes offer-border-pulse {
+        0% {
+          background-position: 0% 0%;
+        }
+        50% {
+          background-position: 100% 100%;
+        }
+        100% {
+          background-position: 0% 0%;
         }
       }
 
@@ -1075,7 +1084,7 @@
 
         .offer-card::after {
           animation: none;
-          opacity: 0.55;
+          opacity: 0.42;
         }
       }
 
